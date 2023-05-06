@@ -180,4 +180,6 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
+// add if statement for if on index, event listener of getting started button
+
 getAndRenderNotes();
