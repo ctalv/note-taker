@@ -21,19 +21,38 @@ app.use(express.urlencoded());
 
 
 app.get('*', (req, res) => {
-
-})
+    console.info(`${req.method} request received for * path or index.html`)
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.get('/notes', (req, res) => {
-    
+    console.info(`${req.method} request received for /notes path or notes.html`)
+    res.sendFile(path.join(__dirname, 'notes.html'));
 });
 
 app.get('/api/notes', (req, res) => {
-    
+    console.info(`${req.method} request received to read and return notes`)
+    res.json(data);
 });
 
 app.post('/api/notes', (req, res) => {
-    
+    console.info(`${req.method} request received to save new note`)
+    // destructuring assignment
+    const { title, text } = req.body;
+
+    const newNote = {
+        title,
+        text,
+    };
+
+    const response = {
+        status: 'success',
+        body: newNote,
+    };
+
+    console.log(response);
+    res.status(200).json(response);
+
 });
 
 // listen
