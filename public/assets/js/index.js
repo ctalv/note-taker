@@ -3,6 +3,8 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
+let getStartedBtn = document.querySelector('#get-started')
+
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -10,6 +12,7 @@ if (window.location.pathname === '/notes') {
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
+  console.log(window.location.pathname)
 }
 
 // Show an element
@@ -181,5 +184,18 @@ if (window.location.pathname === '/notes') {
 }
 
 // add if statement for if on index, event listener of getting started button
+const moveToNotes = async () => {
+  const result = await fetch('/notes', {
+    method: 'GET',
+  });
+  const json = await result.json();
+  return json;
+}
+
+const getStartedBtnHandler = () => {
+  moveToNotes();
+};
+
+getStartedBtn.addEventListener('click', getStartedBtnHandler);
 
 getAndRenderNotes();

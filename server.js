@@ -21,8 +21,8 @@ console.log(__dirname)
 // post /api/notes to receive a new note on request body and save to db.json
 
 
-app.get('*', (req, res) => {
-    console.info(`${req.method} request received for * path or index.html`)
+app.get('/', (req, res) => {
+    console.info(`${req.method} request received for / path or index.html`)
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
@@ -54,6 +54,11 @@ app.post('/api/notes', (req, res) => {
     console.log(response);
     res.status(200).json(response);
 
+});
+
+app.get('*', (req, res) => {
+    console.info(`${req.method} request received for * path or index.html`)
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 // listen
