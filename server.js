@@ -32,7 +32,8 @@ app.get('/notes', (req, res) => {
 // get /api/notes to read and return db.json file
 app.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received to read and return notes`)
-    data = JSON.parse(fs.readFileSync('./db/db.json')) || []; // always updates data
+    // always updates data or an empty array if no data present
+    data = JSON.parse(fs.readFileSync('./db/db.json')) || []; 
     res.json(data);
 });
 
@@ -48,6 +49,7 @@ app.post('/api/notes', (req, res) => {
         id: randomUUID(),
     };
 
+    // adds new note to data
     data.push(newNote);
 
     readAndAppend(newNote, `./db/db.json`)
@@ -61,8 +63,6 @@ app.post('/api/notes', (req, res) => {
     res.status(200).json(data);
 
 });
-
-
 
 // listen
 app.listen(PORT, () =>
