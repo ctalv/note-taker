@@ -1,11 +1,11 @@
-# SVG Logo Maker
+# Note Taker
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Description
-This is a node run application that generates a svg file based on user input.
+This is a node run application that saves notes.
 
-Future development would include creating a separate validation script file and testing for said file. 
+Future development would include adding links to the delete icon to allow the user to delete notes. 
     
 ## Table of Contents 
     
@@ -18,41 +18,30 @@ Future development would include creating a separate validation script file and 
 
     
 ## Installation
-- Node v16
-- inquirer package (done in [Usage](#usage))
+https://note-taker-ctalv.herokuapp.com/
     
 ## Usage
-To use this application, you must:
+To use this application on the internet, you can follow the link in [Installation](#installation).
+
+You can also run as a local server following these steps: 
+NOTE: You must have node downloaded on your machine to run application locally.
 1. Download this repositiory to your local machine.
 2. In the terminal, download the inquirer package: 
 
         npm i 
 3. In the terminal, type:
 
-        node index.js
-4. Answer the questions.
-5. You will find your completed svg file in the output folder!
-
-Note: if you run the code again, it WILL overwrite your previously generated SVG Logo.
+        node server.js
+4. Open the local server.
+5. Add notes to your liking!
 
 
-
-https://user-images.githubusercontent.com/122413805/235293567-afca7d37-d7f0-4b36-9f27-08388912bbdf.mp4
-
-
- 
 ## Credits
-Inquirer Validation: https://stackoverflow.com/questions/75216883/repetitive-prompting-with-validation-in-inquirer-js-when-using-a-validation-func
-
-Color Names Array: https://gist.github.com/bobspace/2712980
-
+N/A
 
 ## Tests
-If you wish to test, in the terminal run:
-
-    npm test
+N/A
     
-
 ## Questions
 If you have any questions, email me at clairetalverson@gmail.com or message me on my GitHub at https://github.com/ctalv.
 
