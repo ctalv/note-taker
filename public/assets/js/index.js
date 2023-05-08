@@ -3,7 +3,6 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-let getStartedBtn = document.querySelector('#get-started')
 
 
 if (window.location.pathname === '/notes') {
@@ -12,7 +11,7 @@ if (window.location.pathname === '/notes') {
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
-  console.log(window.location.pathname)
+  
 }
 
 // Show an element
@@ -28,21 +27,27 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-// const getNotes = () =>
-//   fetch('/api/notes', {
+const getNotes = () => 
+  fetch('/api/notes', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    
+  });
+
+
+  // my stuff
+// const getNotes = async () => {
+//   const result = fetch('/api/notes', {
 //     method: 'GET',
 //     headers: {
 //       'Content-Type': 'application/json',
 //     },
 //   });
-
-const getNotes = async () => {
-  const result = fetch('/api/notes', {
-    method: 'GET',
-  });
-    const json = (await result).json();
-    return json;
-};
+//     const json = (await result).json();
+//     return json;
+// };
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -129,6 +134,7 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -192,18 +198,26 @@ if (window.location.pathname === '/notes') {
 }
 
 // add if statement for if on index, event listener of getting started button
-const moveToNotes = async () => {
-  const result = await fetch('/notes', {
-    method: 'GET',
-  });
-  const json = await result.json();
-  return json;
+// const moveToNotes = async () => {
+//   const result = await fetch('/notes', {
+//     method: 'GET',
+//   });
+//   const json = await result.json();
+//   return json;
+// }
+
+// const getStartedBtnHandler = () => {
+  
+//   getNotes().then((response) => response.forEach((item) => renderNoteList(item)))
+  
+// };
+if (window.location.pathname === '/') {
+
+  let getStartedBtn = document.querySelector('#get-started')
+
+  getStartedBtn.addEventListener('click', getAndRenderNotes());
 }
 
-const getStartedBtnHandler = () => {
-  moveToNotes();
-};
-
-getStartedBtn.addEventListener('click', getStartedBtnHandler);
-
+if (window.location.pathname === '/notes') {
 getAndRenderNotes();
+}
