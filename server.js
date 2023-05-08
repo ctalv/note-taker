@@ -1,7 +1,9 @@
 // require exress, path, and db data
 const express = require('express');
 const path = require('path');
-const data = require('./db/db.json')
+const data = require('./db/db.json');
+// const uuid = require('./helpers/uuid');
+const { randomUUID } = require('crypto');
 // const api = require('./public/assets/js/index.js');
 
 PORT = process.env.PORT || 3001;
@@ -52,6 +54,7 @@ app.post('/api/notes', (req, res) => {
     const newNote = {
         title,
         text,
+        id: randomUUID(),
     };
 
     const response = {
