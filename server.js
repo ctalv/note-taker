@@ -1,7 +1,7 @@
 // require exress, path, and db data
 const express = require('express');
 const path = require('path');
-const data = require('./db/db.json');
+let data = require('./db/db.json');
 // const uuid = require('./helpers/uuid');
 const { randomUUID } = require('crypto');
 const fs = require('fs');
@@ -44,6 +44,7 @@ app.get('/notes', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received to read and return notes`)
+    data = JSON.parse(fs.readFileSync('./db/db.json')) || []; // always updates data
     res.json(data);
 });
 
@@ -58,27 +59,28 @@ app.post('/api/notes', (req, res) => {
         id: randomUUID(),
     };
 
+data.push(newNote);
 
-const writeToFile = (destination, content) =>
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
-  );
+    const writeToFile = (destination, content) =>
+        fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+            err ? console.error(err) : console.info(`\nData written to ${destination}`)
+        );
 
     const readAndAppend = (content, file) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-    } else {
-      const parsedData = JSON.parse(data);
-      parsedData.push(content);
-      writeToFile(file, parsedData);
-    }
-  });
-};
+        fs.readFile(file, 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                const parsedData = JSON.parse(data);
+                parsedData.push(content);
+                writeToFile(file, parsedData);
+            }
+        });
+    };
 
 
 
-readAndAppend(newNote, `./db/db.json`)
+    readAndAppend(newNote, `./db/db.json`)
 
     const response = {
         status: 'success',
@@ -86,7 +88,7 @@ readAndAppend(newNote, `./db/db.json`)
     };
 
     console.log(response);
-    res.status(200).json(response);
+    res.status(200).json(data);
 
 });
 
