@@ -1,0 +1,49 @@
+# Note Taker
+
+![License](https://img.shields.io/badge/license-MIT-green)
+
+## Description
+This is a node run application that saves notes.
+
+Future development would include adding links to the delete icon to allow the user to delete notes. 
+    
+## Table of Contents 
+    
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Tests](#tests)
+- [Questions](#questions)
+- [License](#license)
+
+    
+## Installation
+https://note-taker-ctalv.herokuapp.com/
+    
+## Usage
+To use this application on the internet, you can follow the link in [Installation](#installation).
+
+You can also run as a local server following these steps: 
+NOTE: You must have node downloaded on your machine to run application locally.
+1. Download this repositiory to your local machine.
+2. In the terminal, download the inquirer package: 
+
+        npm i 
+3. In the terminal, type:
+
+        node server.js
+4. Open the local server.
+5. Add notes to your liking!
+
+
+## Credits
+fdutils in helper file from Rice University class content.
+
+## Tests
+N/A
+    
+## Questions
+If you have any questions, email me at clairetalverson@gmail.com or message me on my GitHub at https://github.com/ctalv.
+
+## License
+This project is covered under the MIT License.

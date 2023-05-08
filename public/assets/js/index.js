@@ -36,36 +36,6 @@ const getNotes = () =>
     
   });
 
-
-  // my stuff
-// const getNotes = async () => {
-//   const result = fetch('/api/notes', {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-//     const json = (await result).json();
-//     return json;
-// };
-
-// const saveNote = (note) => 
-//   fetch('/api/notes', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(note),
-//   })
-//   .then((res) => res.json())
-//   .then((data) => {
-//     console.log('Successful POST request:', data);
-//     return data;
-//   })
-//   .catch((error) => {
-//     console.error('Error in POST request:', error);
-//   });
-
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -214,24 +184,9 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
-// add if statement for if on index, event listener of getting started button
-// const moveToNotes = async () => {
-//   const result = await fetch('/notes', {
-//     method: 'GET',
-//   });
-//   const json = await result.json();
-//   return json;
-// }
 
-// const getStartedBtnHandler = () => {
-  
-//   getNotes().then((response) => response.forEach((item) => renderNoteList(item)))
-  
-// };
 if (window.location.pathname === '/') {
-
   let getStartedBtn = document.querySelector('#get-started')
-
   getStartedBtn.addEventListener('click', getAndRenderNotes());
 }
 
