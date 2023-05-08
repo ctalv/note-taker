@@ -4,6 +4,7 @@ const path = require('path');
 const data = require('./db/db.json');
 // const uuid = require('./helpers/uuid');
 const { randomUUID } = require('crypto');
+const fs = require('fs');
 // const api = require('./public/assets/js/index.js');
 
 PORT = process.env.PORT || 3001;
@@ -57,6 +58,28 @@ app.post('/api/notes', (req, res) => {
         id: randomUUID(),
     };
 
+
+const writeToFile = (destination, content) =>
+  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+    err ? console.error(err) : console.info(`\nData written to ${destination}`)
+  );
+
+    const readAndAppend = (content, file) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedData = JSON.parse(data);
+      parsedData.push(content);
+      writeToFile(file, parsedData);
+    }
+  });
+};
+
+
+
+readAndAppend(newNote, `./db/db.json`)
+
     const response = {
         status: 'success',
         body: newNote,
@@ -73,6 +96,6 @@ app.post('/api/notes', (req, res) => {
 // });
 
 // listen
-app.listen(PORT, () => 
+app.listen(PORT, () =>
     console.log(`Server listening at http://localhost:${PORT}`)
 );
