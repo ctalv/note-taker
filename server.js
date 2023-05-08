@@ -4,6 +4,7 @@ const path = require('path');
 const data = require('./db/db.json');
 // const uuid = require('./helpers/uuid');
 const { randomUUID } = require('crypto');
+const fs = require('fs');
 // const api = require('./public/assets/js/index.js');
 
 PORT = process.env.PORT || 3001;
@@ -56,6 +57,18 @@ app.post('/api/notes', (req, res) => {
         text,
         id: randomUUID(),
     };
+
+    const noteString = JSON.stringify(newNote);
+
+    fs.appendFile(`./db/db.json`, 
+    `${noteString},`, 
+    (err) =>
+      err
+        ? console.error(err)
+        : console.log(
+            `New note titled ${newNote.title} has been written to JSON file`
+          )
+    );
 
     const response = {
         status: 'success',
