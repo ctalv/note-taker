@@ -49,14 +49,42 @@ const getNotes = () =>
 //     return json;
 // };
 
-const saveNote = (note) =>
+const saveNote = (note) => {
   fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  })
+  .then((response) => response.json())
+      .then((data) => {
+        alert(data);
+        handleNoteSave(note);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  // const postTip = (tip) => {
+  //   console.log('tip', tip);
+  //   fetch('/api/tips', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(tip),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       alert(data);
+  //       createCard(tip);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // };
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
