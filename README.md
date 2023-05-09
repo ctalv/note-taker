@@ -6,6 +6,8 @@
 This is a node run application that saves notes.
 
 Future development would include adding links to the delete icon to allow the user to delete notes. 
+
+![Webpage: ](https://github.com/ctalv/note-taker/assets/122413805/aa88ed3e-49df-4a5e-99c3-5c3dc85659e2)
     
 ## Table of Contents 
     
@@ -16,16 +18,14 @@ Future development would include adding links to the delete icon to allow the us
 - [Questions](#questions)
 - [License](#license)
 
-    
 ## Installation
-https://note-taker-ctalv.herokuapp.com/
+To run locally, you must have Node.js installed on your machine.
     
 ## Usage
-To use this application on the internet, you can follow the link in [Installation](#installation).
+https://note-taker-ctalv.herokuapp.com/
 
 You can also run as a local server following these steps: 
-NOTE: You must have node downloaded on your machine to run application locally.
-1. Download this repositiory to your local machine.
+1. Download this repository to your local machine.
 2. In the terminal, download the inquirer package: 
 
         npm i 
